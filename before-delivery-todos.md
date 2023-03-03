@@ -1,0 +1,1 @@
+1. Update docker-composer.yml. Change port from 3000 to 80
