@@ -11,11 +11,15 @@ class Weather
 
     private array|object $weather;
 
+    private bool $formatted = true;
+
     public function __construct(
         private WeatherInterface $provider,
         public float|int $lat,
         public float|int $lon
-    ){}
+    ){
+        $this->unit = 'imperial';
+    }
 
     public function setUnit(string $unit): static
     {
@@ -27,6 +31,12 @@ class Weather
         return $this;
     }
 
+    public function setFormatted(bool $formatted): static
+    {
+        $this->formatted = $formatted;
+        return $this;
+    }
+
     public function fetchWeather(): static
     {
         $this->weather = $this->provider::getWeather($this->lat, $this->lon, $this->unit);
@@ -35,6 +45,10 @@ class Weather
 
     public function getWeather(): array|object
     {
+        if ($this->formatted) {
+            return $this->provider->format($this->weather);
+        }
+
         return $this->weather;
     }
 }
