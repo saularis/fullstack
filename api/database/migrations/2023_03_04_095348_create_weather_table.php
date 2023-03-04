@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('weather', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->float('temperature')->default(0);
             $table->float('feels_like')->default(0);
             $table->float('temp_min')->default(0);
