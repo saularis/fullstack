@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         User::factory(20)
+        User::factory(5)
             ->hasWeather(1)
             ->create();
     }
