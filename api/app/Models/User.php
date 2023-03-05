@@ -40,6 +40,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    // add attribute to the model
+    public function getDialogAttribute(): bool
+    {
+        return false;
+    }
+
     /**
      * Get the weather for the user.
      */

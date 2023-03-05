@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\WeatherController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,7 @@ Route::get('/', function () {
         'users' => \App\Models\User::with('weather')->get(),
     ]);
 });
+
+Route::get('/users/{user}/weather', [WeatherController::class, 'handleUpdateRequest'])
+    ->name('weather.update')
+    ->middleware('throttle:1,1');
