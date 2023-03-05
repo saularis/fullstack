@@ -7,7 +7,7 @@ let alertMessage = ref("");
 
 const handleUpdateRequest = (userId) => {
   // use fetch to call the api
-  fetch(`/api/users/${userId}/update`, {
+  fetch(`http://localhost/users/${userId}/weather`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
