@@ -16,9 +16,14 @@ use App\Http\Controllers\WeatherController;
 */
 
 Route::get('/', function () {
+
+    $users = cache()->remember('users', 60, function () {
+        return \App\Models\User::with('weather')->get();
+    });
+
     return response()->json([
         'message' => 'all systems are a go',
-        'users' => \App\Models\User::with('weather')->get(),
+        'users' => $users,
     ]);
 });
 
